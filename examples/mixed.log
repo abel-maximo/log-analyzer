@@ -1,0 +1,12 @@
+# Cenários variados: ALTA, MÉDIA e BAIXA
+2026-09-29 14:32 LOGIN_FAILED user=admin ip=185.32.x.x
+2026-09-29 14:32 LOGIN_FAILED user=admin ip=185.32.x.x
+2026-09-29 14:33 LOGIN_FAILED user=admin ip=185.32.x.x
+2026-09-29 14:34 LOGIN_SUCCESS user=admin ip=185.32.x.x
+2026-09-29 09:10 LOGIN_FAILED user=root ip=45.12.7.9
+2026-09-29 09:11 LOGIN_FAILED user=root ip=45.12.7.9
+2026-09-29 09:11 LOGIN_FAILED user=root ip=45.12.7.9
+2026-09-29 11:00 LOGIN_FAILED user=maria.souza ip=10.0.0.23
+2026-09-29 11:01 LOGIN_SUCCESS user=maria.souza ip=10.0.0.23
+2026-09-29 12:00 LOGIN_SUCCESS user=carlos ip=10.0.0.40 password=nao-deveria-estar-aqui
+linha corrompida sem formato

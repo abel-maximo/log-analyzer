@@ -1,0 +1,37 @@
+services:
+  api:
+    build: .
+    image: ai-security-log-analyzer:0.1.0
+    env_file: .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////app/data/analyzer.db}
+      AUDIT_LOG_PATH: /app/data/audit.log
+    ports:
+      - "127.0.0.1:8000:8000"   # expõe só em localhost
+    volumes:
+      - analyzer-data:/app/data
+    read_only: true              # filesystem imutável; só /app/data e /tmp graváveis
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    restart: unless-stopped
+
+  # Opcional: docker compose --profile postgres up
+  # e DATABASE_URL=postgresql+psycopg://analyzer:analyzer@db:5432/analyzer no .env
+  db:
+    image: postgres:16-alpine
+    profiles: ["postgres"]
+    environment:
+      POSTGRES_DB: analyzer
+      POSTGRES_USER: analyzer
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-analyzer}   # troque em qualquer ambiente não-local
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U analyzer"]
+      interval: 5s
+      retries: 10
+
+volumes:
+  analyzer-data:
+  pg-data:

@@ -1,0 +1,46 @@
+{
+  "id": "abb713f7-b284-43b3-a927-e2a0b543d374",
+  "created_at": "2026-09-29T20:17:30.485693",
+  "severidade_geral": "ALTA",
+  "total_linhas": 4,
+  "total_eventos": 4,
+  "llm_utilizado": false,
+  "erros_parsing": [],
+  "analises": [
+    {
+      "severidade": "ALTA",
+      "evento": "Possível ataque de força bruta seguido de autenticação bem-sucedida",
+      "indicadores": [
+        "múltiplas tentativas de login",
+        "mesmo endereço IP",
+        "conta administrativa",
+        "autenticação bem-sucedida após falhas",
+        "IP externo"
+      ],
+      "acao_recomendada": "Investigar a origem do IP e revisar a atividade da conta; considerar redefinição de credenciais, revogação de sessões ativas e verificação de MFA",
+      "confianca": 0.95,
+      "mitre_attack": [
+        "T1110",
+        "T1078"
+      ],
+      "evidencias": [
+        "L1: 2026-09-29 14:32 LOGIN_FAILED user=admin ip=185.32.x.x",
+        "L2: 2026-09-29 14:32 LOGIN_FAILED user=admin ip=185.32.x.x",
+        "L3: 2026-09-29 14:33 LOGIN_FAILED user=admin ip=185.32.x.x",
+        "L4: 2026-09-29 14:34 LOGIN_SUCCESS user=admin ip=185.32.x.x"
+      ],
+      "explicacao": {
+        "score": 95,
+        "indicadores_ids": [
+          "MULTIPLE_FAILURES",
+          "SAME_IP",
+          "PRIVILEGED_ACCOUNT",
+          "SUCCESS_AFTER_FAILURES",
+          "EXTERNAL_IP"
+        ],
+        "justificativa": "score=95 [múltiplas tentativas de login (+20), mesmo endereço IP (+10), conta administrativa (+20), autenticação bem-sucedida após falhas (+35), IP externo (+10)]; limiares: ALTA≥70, MÉDIA≥40",
+        "fonte": "regras"
+      }
+    }
+  ]
+}

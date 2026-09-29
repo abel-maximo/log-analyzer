@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-security-log-analyzer"
+version = "0.1.0"
+description = "Sistema inteligente para análise automatizada de logs de segurança"
+readme = "README.md"
+requires-python = ">=3.10"
+# Versões testadas neste MVP (ver requirements.txt para pin exato)
+dependencies = [
+  "fastapi>=0.142,<1",
+  "uvicorn>=0.46",
+  "pydantic>=2.13,<3",
+  "pydantic-settings>=2.14,<3",
+  "SQLAlchemy>=2.1,<3",
+  "httpx>=0.28,<1",
+]
+
+[project.optional-dependencies]
+postgres = ["psycopg[binary]>=3.3,<4"]
+dev = ["pytest>=9.1"]
+
+[project.scripts]
+log-analyzer = "log_analyzer.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"

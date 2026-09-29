@@ -1,0 +1,17 @@
+Severidade: ALTA
+
+Evento identificado:
+Possível ataque de força bruta seguido de autenticação bem-sucedida.
+
+Indicadores:
+- múltiplas tentativas de login
+- mesmo endereço IP
+- conta administrativa
+- autenticação bem-sucedida após falhas
+- IP externo
+
+Ação recomendada:
+Investigar a origem do IP e revisar a atividade da conta; considerar redefinição de credenciais, revogação de sessões ativas e verificação de MFA.
+
+Confiança: 0.95 | MITRE ATT&CK: T1110, T1078 | Fonte: regras
+Justificativa: score=95 [múltiplas tentativas de login (+20), mesmo endereço IP (+10), conta administrativa (+20), autenticação bem-sucedida após falhas (+35), IP externo (+10)]; limiares: ALTA≥70, MÉDIA≥40
